@@ -56,3 +56,30 @@ document.querySelector('.check').addEventListener('click', function () {
 });
 
 document.querySelector('.again').addEventListener('click', init);
+
+document.querySelector('.guess').addEventListener('keydown', function (e) {
+  // Allow: Backspace, Delete, Tab, Escape, Enter, and Arrow keys
+  if (
+    [
+      'Backspace',
+      'Delete',
+      'Tab',
+      'Escape',
+      'Enter',
+      'ArrowLeft',
+      'ArrowRight',
+      'ArrowUp',
+      'ArrowDown',
+    ].includes(e.key) ||
+    // Allow: Ctrl+A, Command+A, etc.
+    (e.ctrlKey === true || e.metaKey === true)
+  ) {
+    return;
+  }
+
+  // Ensure that it is a number and stop the keypress
+  // If the key is NOT a digit (0-9), prevent the default action
+  if (!/^[0-9]$/.test(e.key)) {
+    e.preventDefault();
+  }
+});
